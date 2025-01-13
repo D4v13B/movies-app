@@ -1,9 +1,12 @@
+import { Redirect } from "expo-router"
 import { View, Text } from "react-native"
-const HomeLayout = () => {
+const MoviesApp = () => {
    return (
-      <View>
-         <Text className="">HomeLayout</Text>
-      </View>
+      <Redirect href={"/home"} />
+
+      // <View>
+      //    <Text className="">HomeLayout</Text>
+      // </View>
    )
 }
-export default HomeLayout
+export default MoviesApp
