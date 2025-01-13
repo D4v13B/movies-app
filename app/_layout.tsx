@@ -6,6 +6,8 @@ import { StatusBar } from "expo-status-bar"
 import "../global.css"
 
 const RootLayut = () => {
+
+
    return (
       <>
          <Slot />
