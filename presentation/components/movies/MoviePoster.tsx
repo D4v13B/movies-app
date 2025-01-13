@@ -16,7 +16,7 @@ const MoviePoster = ({id, poster, smallPoster = false, className} : Props) => {
             style={{
                width: smallPoster ? 85 : 150,
                height: smallPoster ? 130 : 250,
-               borderRadius: 12
+               borderRadius: 12,
             }}
             resizeMode="cover"
          />

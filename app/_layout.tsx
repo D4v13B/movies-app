@@ -1,9 +1,9 @@
-import { View, Text, SafeAreaView } from "react-native"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-import { Slot, Stack } from "expo-router"
+import { Stack } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 import "../global.css"
 
@@ -13,9 +13,15 @@ const RootLayut = () => {
    return (
       <>
          <QueryClientProvider client={queryClient}>
-            {/* <Stack /> */}
-            <Slot />
-            <StatusBar style="inverted" />
+            <GestureHandlerRootView>
+               <Stack
+                  screenOptions={{
+                     headerShown: false,
+                  }}
+               />
+               {/* <Slot /> */}
+               <StatusBar style="inverted" />
+            </GestureHandlerRootView>
          </QueryClientProvider>
       </>
    )

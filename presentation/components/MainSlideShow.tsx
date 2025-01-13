@@ -2,7 +2,6 @@ import React, { useRef } from "react"
 import { View, Text, useWindowDimensions, Image } from "react-native"
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel"
 import { Movie } from "@/infrastructure/interfaces/movie.interface"
-import { GestureHandlerRootView } from "react-native-gesture-handler"
 import MoviePoster from "./movies/MoviePoster"
 
 interface Props {
@@ -14,11 +13,18 @@ const MainSlideShow = ({ movies }: Props) => {
    const { width } = useWindowDimensions()
 
    return (
-      <GestureHandlerRootView className="h-[250px] w-full">
+      <View
+         className="h-[250px] w-full"
+         style={{
+            height: 250,
+         }}
+      >
          <Carousel
             ref={ref}
             data={movies}
-            renderItem={({ item }) => <MoviePoster id={item.id} poster={item.poster} />}
+            renderItem={({ item }) => (
+               <MoviePoster id={item.id} poster={item.poster} />
+            )}
             width={160}
             height={350}
             style={{
@@ -34,9 +40,9 @@ const MainSlideShow = ({ movies }: Props) => {
             //    parallaxScrollingScale: 0.9,
             //    parallaxScrollingOffset: 50
             // }}
-            defaultIndex={1}
+            // defaultIndex={1}
          />
-      </GestureHandlerRootView>
+      </View>
    )
 }
 
