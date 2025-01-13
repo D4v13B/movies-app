@@ -13,7 +13,8 @@ const RootLayut = () => {
    return (
       <>
          <QueryClientProvider client={queryClient}>
-            <Stack />
+            {/* <Stack /> */}
+            <Slot />
             <StatusBar style="inverted" />
          </QueryClientProvider>
       </>
