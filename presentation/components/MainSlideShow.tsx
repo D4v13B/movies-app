@@ -1,5 +1,16 @@
+import {
+   configureReanimatedLogger,
+   ReanimatedLogLevel,
+} from "react-native-reanimated"
+
+// This is the default configuration
+configureReanimatedLogger({
+   level: ReanimatedLogLevel.warn,
+   strict: false, // Reanimated runs in strict mode by default
+})
+
 import React, { useRef } from "react"
-import { View, Text, useWindowDimensions, Image } from "react-native"
+import { View, useWindowDimensions } from "react-native"
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel"
 import { Movie } from "@/infrastructure/interfaces/movie.interface"
 import MoviePoster from "./movies/MoviePoster"

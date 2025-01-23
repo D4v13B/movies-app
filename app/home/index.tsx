@@ -12,7 +12,8 @@ import MovieHorizontalList from "@/presentation/components/movies/MovieHorizonta
 
 const HomeScreen = () => {
    const safeArea = useSafeAreaInsets()
-   const { nowPlayingQuery, popularQuery, upcomingQuery, topRatedQuery } = useMovies()
+   const { nowPlayingQuery, popularQuery, upcomingQuery, topRatedQuery } =
+      useMovies()
 
    if (nowPlayingQuery.isLoading) {
       return (
@@ -38,14 +39,27 @@ const HomeScreen = () => {
          <MainSlideShow movies={nowPlayingQuery.data ?? []} />
 
          {/* Peliculas populares */}
-         <MovieHorizontalList title="Populares" movies={popularQuery.data ?? []} />
+         <MovieHorizontalList
+            title="Populares"
+            movies={popularQuery.data ?? []}
+         />
 
          {/* Top rated */}
-         <MovieHorizontalList title="Mejor Calificadas" movies={topRatedQuery.data ?? []} />
+         <MovieHorizontalList
+            title="Mejor Calificadas"
+            movies={topRatedQuery.data?.pages.flat() ?? []}
+            loadNextPage={topRatedQuery.fetchNextPage}
+         />
 
          {/* Proximamente */}
-         <MovieHorizontalList title="Proximamente"  movies={upcomingQuery.data ?? []} />
-         <MovieHorizontalList className="pb-20"  movies={upcomingQuery.data ?? []} />
+         <MovieHorizontalList
+            title="Proximamente"
+            movies={upcomingQuery.data ?? []}
+         />
+         <MovieHorizontalList
+            className="pb-20"
+            movies={upcomingQuery.data ?? []}
+         />
       </ScrollView>
    )
 }

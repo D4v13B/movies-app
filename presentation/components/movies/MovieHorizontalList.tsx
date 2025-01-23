@@ -1,16 +1,41 @@
 import { Movie } from "@/infrastructure/interfaces/movie.interface"
-import { View, Text } from "react-native"
+import { View, Text, NativeSyntheticEvent, NativeScrollEvent } from "react-native"
 import { FlatList, GestureHandlerRootView } from "react-native-gesture-handler"
 import MoviePoster from "./MoviePoster"
+import { useEffect, useRef } from "react"
 
 interface Props {
    movies: Movie[],
    title?: string 
-   className?: string 
+   className?: string
+   loadNextPage?: () => void
 }
 
-const MovieHorizontalList = ({ movies, title, className }: Props) => {
+const MovieHorizontalList = ({ movies, title, className, loadNextPage }: Props) => {
 
+   const isLoading = useRef(false)
+
+   // useEffect(() => {
+   //    setTimeout(() => isLoading.current == false, 2000)
+   // }, [movies])
+
+   const onScroll = (event : NativeSyntheticEvent<NativeScrollEvent>) => {
+      if(isLoading.current) return
+
+      const {contentOffset, layoutMeasurement, contentSize } = event.nativeEvent
+
+      const isEndReached = (contentOffset.x + layoutMeasurement.width + 600) >= contentSize.width
+
+      if(!isEndReached) return
+
+      isLoading.current = true
+
+      // TODO:
+      console.log("Cargar siguiente peliculas")
+      loadNextPage && loadNextPage()
+
+      isLoading.current = false
+   }
 
    return (
       <>
@@ -32,6 +57,7 @@ const MovieHorizontalList = ({ movies, title, className }: Props) => {
                      poster={item.poster}
                   />
                )}
+               onScroll={onScroll}
             />
          </View>
       </>
