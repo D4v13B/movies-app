@@ -9,12 +9,11 @@ export const getMovieByIdAction = async(id:number | string):Promise<CompleteMovi
    try {
          
          const {data} = await movieApi.get<MovieDBMovieResponse>(`/${id}`)
+
+         console.log("PELICULA CARGADA");
          
-         // const movies = data.results.map(MovieMapper.fromTheMovieDbToMovie)
-         // console.log(data)
          return MovieMapper.fromTheMovieDBToCompleteMovie(data)
          
-         // console.log(movies);
       } catch (error) {
          console.log(error);
          throw "Cannot load now playing movies"

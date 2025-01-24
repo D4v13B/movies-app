@@ -22,7 +22,7 @@ export const useMovies = () => {
       queryKey: ["movies", "top_rated"],
       queryFn: ({ pageParam }) => {
          
-         console.log(pageParam)
+         // console.log(pageParam)
          
          return topRatedAction({ page: pageParam })
       },
